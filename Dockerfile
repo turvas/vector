@@ -15,4 +15,5 @@ RUN cargo build --release --no-default-features
 FROM alpine:latest
 RUN apk add --no-cache libgcc
 COPY --from=builder /vector/target/release/vector /usr/local/bin/vector
-CMD ["vector"]
+ENTRYPOINT ["/usr/local/bin/vector"]
+CMD ["--config", "/etc/vector/vector.toml"]
