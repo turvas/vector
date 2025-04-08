@@ -11,7 +11,7 @@ RUN apk add --no-cache \
     git
 WORKDIR /vector
 COPY . .
-RUN cargo build --release --no-default-features
+RUN cargo build --release --no-default-features --features "sinks-logflare sinks-http sources-file sources-docker_logs transforms api"
 FROM alpine:latest
 RUN apk add --no-cache libgcc
 COPY --from=builder /vector/target/release/vector /usr/local/bin/vector
